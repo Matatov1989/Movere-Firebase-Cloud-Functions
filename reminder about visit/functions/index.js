@@ -14,7 +14,7 @@ const THREE_MONTHS_PLUS_DAY_MILLISECOND = THREE_MONTHS_MILLISECOND + DAY_MILLISE
 var db;
 
 
-exports.reminderAboutVisitTEST = functions.https.onRequest((req, res) => 
+exports.reminderAboutVisit = functions.https.onRequest((req, res) => 
 {
 	var todayMillisecomd = new Date();
 	db = admin.firestore();

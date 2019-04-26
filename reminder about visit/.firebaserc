@@ -1,5 +1,6 @@
 {
   "projects": {
-    "default": "movere-point"
+    "default": "movere-point",
+    "reminder": "movere-point"
   }
 }
