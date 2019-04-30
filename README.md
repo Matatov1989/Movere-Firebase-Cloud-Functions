@@ -1,9 +1,9 @@
 # Movere Firebase Cloud Functions
 
 
-These functions connect with project M. Functions are stored and run in response to requests caused by deleting a user account and HTTPS requests in Firebase Cloud Function.
+These functions connect with project Movere. Functions are stored and run in response to requests caused by deleting a user account and HTTPS requests in Firebase Cloud Function.
 
-### Tasks: ###
+### Tasks:
 - sending a reminder to users, which did not visit 3 months a program;
 - keep database clean.
 
