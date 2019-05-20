@@ -13,24 +13,36 @@ exports.removeOldEvents = functions.https.onRequest((req, res) => {
   .get()
   .then(querySnapshot => {
     var promises = [];
-
     querySnapshot.forEach(doc => {
       console.log('Event id = ', doc.id);
       var strLen = doc.data().eventPhoto.length;
-      if (strLen > 0){
-        const file = bucket.file("Events/" + doc.id);
-        promises.push(file.delete());
+      var strTitle = doc.data().eventTitle;
+
+      if (strTitle == 'SOS'){
+        var type = doc.data().eventCreatedTypeVehicle;
+        promises.push(db.collection("Users").doc(doc.data().eventCreatedId)
+        .update({
+          "userTypeVehicle": type
+        })
+        .then(function() {
+          console.log("Document successfully updated! id = ", doc.data().eventCreatedId);
+          promises.push(db.collection("Events").doc(doc.id).delete());
+        }));
       }
-      promises.push(db.collection("Events").doc(doc.id).delete());
+      else{
+        if (strLen > 0){
+          const file = bucket.file("Events/" + doc.id);
+          promises.push(file.delete());
+        }
+        promises.push(db.collection("Events").doc(doc.id).delete());
+      }
     });
     return Promise.all(promises);
-    })
-    .then(() => {
-      console.log('Successful');
-      res.send('Successful');
-    })
-    .catch(error => {
-      console.log('Error ', error);
-      res.status(500).send('Error ', error);
-    });
- });
+  }).then(() => {
+    console.log('Successful');
+    res.send('Successful');
+  }).catch(error => {
+    console.log('Error ', error);
+    res.status(500).send('Error ', error);
+  });
+});
