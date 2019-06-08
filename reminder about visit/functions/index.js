@@ -1,4 +1,3 @@
-
 'use strict';
 
 const functions = require('firebase-functions');
@@ -12,7 +11,6 @@ const DAY_MILLISECOND = 86400000;
 const THREE_MONTHS_PLUS_DAY_MILLISECOND = THREE_MONTHS_MILLISECOND + DAY_MILLISECOND;
 
 var db;
-
 
 exports.reminderAboutVisit = functions.https.onRequest((req, res) => 
 {
