@@ -12,7 +12,6 @@ exports.cleanupUserData = functions.auth.user().onDelete((user) => {
 
 //  return db.collection("Users").doc(uid).delete();
   return removeAllUserData(user.uid);
-
 });
 
 var removeUser;
